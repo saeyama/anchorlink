@@ -6,3 +6,5 @@
 あまり意味変わっていない。bundle installとどこが異なるのか
 
 * github issueは利用した方がいいのか
+
+* devise タイムゾーンは入れた方がいいのか
