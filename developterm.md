@@ -37,7 +37,8 @@ https://life-and-mind.com/nlp-anchoring-6875
 # リーンキャンバスの作成
 https://docs.google.com/spreadsheets/d/1UFQ_MY4YwnDbgM2-0uM9Nt9j6DMvevatUYCalbE6Jz8/edit#gid=1709318117
 
-https://gyazo.com/e982035efe3e4fbc74898869b293f578
+<img width="941" alt="leancanvas" src="https://user-images.githubusercontent.com/64824195/101278134-bbfae380-37fc-11eb-89f7-7d6443e5ffe5.png">
+
 
 <br>
 
@@ -69,35 +70,39 @@ https://gyazo.com/e982035efe3e4fbc74898869b293f578
 
 # MVP(Minimum Viable Product)選定
 
-**フロント画面**
-* 会員<br>
-﹂ログインログアウト
-* カテゴリ<br>
-﹂検索
-* 目的詳細ページ<br>
-﹂参加者の進捗確認（棒グラフ）<br> 
-* マイページ<br> 
-﹂目的作成<br> 
-﹂目的参加<br> 
-﹂参加している目的の進捗管理<br>  
-* 5段階機能・コメント機能
-
-* 複数の人が参加出来る機能
+* ユーザー登録/ログイン/パスワードリセット（devise）
+* 進捗管理(マイページ)（devise）
+https://qiita.com/Densetsu/items/def2189153ddb79d9dce
+* 目的ページ<br>
+ ﹂グループ機能(https://qiita.com/savaniased/items/ce7dd5a825ad0f6be53c)  
+ ﹂画像アップロード（carrierwave、AWS S3）
+* 5段階機能・コメント機能（jquery.raty）
+* 検索(目的カテゴリ)(ransack)
+* 通知機能（LINE MessagerAPI/Action Mailer/whenever）
 
 <br>
 
 # ワイヤーフレーム
-https://gyazo.com/9ab819a3a91e152294b602a7f72fa789
+
+xd
+https://xd.adobe.com/view/4c58aacc-44c8-407c-b85b-e261ea3c23d1-190b/
+
+![wireframe1](https://user-images.githubusercontent.com/64824195/101277965-59551800-37fb-11eb-9042-001ae8ecbd30.png)
+
+![wireframe2](https://user-images.githubusercontent.com/64824195/101278006-a933df00-37fb-11eb-897a-e4b689e75b7e.png)
 
 <br>
+
 # ER図
-前
-https://gyazo.com/12e635faaa0f00b8abe02d71dee6bcf8
-
-訂正
-https://gyazo.com/e53174cf62e49c738cd3b0eb7c2ebe46
-
 https://app.diagrams.net/#G1--LzNXVqh-Cjgn9Eis-ANrqywvmR6PRD
+
+
+[修正前]
+https://gyazo.com/d7d673ba26aa0b1a5487b716049c8cad
+
+[修正後]
+![ER](https://user-images.githubusercontent.com/64824195/101278082-4d1d8a80-37fc-11eb-81a8-cd9630757660.png)
+
 
 
 
