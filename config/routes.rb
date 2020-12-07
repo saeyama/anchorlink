@@ -20,8 +20,15 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  
-  resources :participants
+
+  # resources :participants  
+
+  resources :participants do
+    collection do
+      get :category
+    end
+  end
+
   resources :tasks
   resources :scores  
 end

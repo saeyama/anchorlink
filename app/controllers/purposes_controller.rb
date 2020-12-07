@@ -5,23 +5,34 @@ class PurposesController < ApplicationController
   end
 
   def confirm
-    @purpose = Purpose.new(purpose_params)
+    # @purpose = Purpose.new(purpose_params)
+    @purpose = current_user.purposes.new(purpose_params) 
+    # @purpose.image=File.new(params[:purpose][:image])
+    
+    # binding.pry
+    
     render :new if @purpose.invalid?  
   end
 
   
   def create
-    @purpose = Purpose.new(purpose_params)
-    render :show and return if params[:back] || !@purpose.save
+    # @purpose = Purpose.new(purpose_params)
+    @purpose = current_user.purposes.new(purpose_params) 
+    render :new and return if params[:back] || !@purpose.save
     redirect_to @purpose
   end
 
   def show
     @purpose = Purpose.find_by(id: params[:id])
-  end  
+  end
+
+  def index
+  end
+
 private
   def purpose_params
     params.require(:purpose).permit(:title, :description, :image, :classification)
   end  
 end
+
 
