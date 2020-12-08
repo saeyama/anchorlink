@@ -1,3 +1,3 @@
 class Task < ApplicationRecord
-  belongs_to :purpose
+  # belongs_to :purpose
 end
