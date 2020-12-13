@@ -1,5 +1,8 @@
 
 <h2>目的一覧</h2>
 
-<%= @purposes.each do |purpose| %>
+<% @purposes.each do |purpose| %>
+  <div><%= purpose.classification %>タイトル<%= purpose.title %>:<%= link_to "詳細", purpose_path(purpose.id) %></div>
+  
 <% end %>
+

@@ -1,6 +1,16 @@
+<h2>目的</h2>
 
- <h2>目的</h2>
+<%= @purpose.classification %> 
+<%= @purpose.title %>
+<%= @purpose.description %> 
+<%= image_tag @purpose.image_url if @purpose.image? %>
 
-  <%= @purpose.classification %> 
-  <%= @purpose.title %>
-  <%= @purpose.description %> 
+<% @purpose.tasks.each do |task| %>
+  <div><%= task.list %></div>
+<% end %>
+
+<% @purpose.tasks.each do |task| %>
+  <div><%= task.percent %>%</div>
+<% end %>
+
+<%= link_to 'この目的に参加する',"#", class: 'btn btn-secondary' %>

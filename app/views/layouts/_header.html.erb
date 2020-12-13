@@ -9,10 +9,13 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to 'マイページ', edit_user_registration_path, class: 'nav-link' %>
+            <%= link_to 'マイページ', user_path(id: current_user.id), class: 'nav-link' %>
           </li>
           <li class="nav-item active">
-            <%= link_to '目的に参加', category_participants_path, class: 'nav-link' %>
+            <%= link_to 'User編集', edit_user_registration_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to '目的に参加', new_purpose_path, class: 'nav-link' %>
           </li>
           <li class="nav-item active">
             <%= link_to '目的を作る', new_purpose_path, class: 'nav-link' %>

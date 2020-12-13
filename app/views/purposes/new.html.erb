@@ -15,15 +15,79 @@
           <%= form.text_area :description %>  
         </div>
         <div class="form-group">
-          <p>image</p>
+          <%= form.label :image %>
           <%= form.file_field :image %>
+          <%= form.hidden_field :image_cache %>
         </div>
-        <div>
+        <div id="purpose_tasks_box" class="form-group">
           <p>タスクを登録する</p>
-          <%= link_to "追加", new_task_path %>
+          <%= form.fields_for :tasks do |t| %>
+          <div class="js-tasks" id="add_tasks_<%= t.index %>"></div>
+            <%= t.hidden_field :user_id, value: current_user.id %>
+            <%= t.text_field :list, placeholder:"タスク内容を入力してください。" %><br>
+            <%= t.select :percent, [[5, 5], [10, 10], [15, 15], [20, 20],[25, 25], [30, 30], [35, 35], [40, 40], [45, 45], [50, 50], [55, 55], [60, 60], [65, 65], [70, 70], [75, 75], [80, 80], [85, 85], [90, 90], [95, 95], [100, 100]], include_blank: "進捗率", class:"form-control" %>
+            <span>%</span><br>
+            <p id= "add_task_button" class="btn btn-secondary">タスク追加</p>
+          <% end %>
         </div>
       <%= form.submit "確認画面へ", class: 'btn btn-secondary' %>
       <% end %>  
   </div>
 </div>
 
+<script>
+$(function() {
+  var task_num = $('.js-tasks').length;
+  $('#add_task_button').on('click', function() {
+    var input =
+        '<div class="js-tasks" id="add_tasks_' + task_num + '">'
+        +'<p>タスク</p>'
+        + '<input class="form-control" placeholder="タスク内容を入力してください。" type="text" name="purpose[tasks_attributes][' + task_num + '][list]" id="purpose_tasks_attributes_' + task_num + '_list" required>'
+
+        +'<p>進捗率</p>'
+        +'<select class="form-control" placeholder="タスク内容を入力してください。"  name="purpose[tasks_attributes][' + task_num + '][percent]" id="purpose_tasks_attributes_' + task_num + '_percent" required >'
+        +'<option value="">進捗率</option>'
+        +'<option value="5">5</option>'
+        +'<option value="10">10</option>'
+        +'<option value="15">15</option>'
+        +'<option value="20">10</option>'
+        +'<option value="25">25</option>'
+        +'<option value="30">30</option>'
+        +'<option value="35">35</option>'
+        +'<option value="40">40</option>'
+        +'<option value="45">45</option>'
+        +'<option value="50">50</option>'
+        +'<option value="55">55</option>'
+        +'<option value="60">60</option>'
+        +'<option value="65">65</option>'
+        +'<option value="70">70</option>'
+        +'<option value="75">75</option>'
+        +'<option value="80">80</option>'
+        +'<option value="85">85</option>'
+        +'<option value="90">90</option>'
+        +'<option value="95">95</option>'
+        +'<option value="100">100</option>'
+        +'</select>'
+        +'<p>%</p>'
+
+        + '<span class="task_delete" data-id="' + task_num + '" >'
+        +   '<span class="btn btn-secondary">Delete</span>'      
+        + '</span>'
+        
+        +'</div>'
+    $('#purpose_tasks_box').append(input);
+    task_num ++;
+  });
+
+  $('#purpose_tasks_box').on('click', '.task_delete', function() {
+    var inputId = $(this).data('id');
+    var defaultData = $(this).data('default');
+    if (defaultData == 'default') {
+      $(this).prev().prop('checked', true);
+      $('#add_tasks_' + inputId).hide();
+    }else{
+      $('#add_tasks_' + inputId).remove();
+    }
+  });
+});
+</script>

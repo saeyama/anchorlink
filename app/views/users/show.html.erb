@@ -1,0 +1,8 @@
+<h2>マイページ</h2>
+<p>USER:<%= @user.name %></p>
+
+<p>作成した目的</p>
+
+<% @purposes.each do |purpose| %>
+  <p><%= link_to purpose.title, purpose_path(purpose.id)  %></p>
+<% end %>

@@ -69,3 +69,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'carrierwave'
+
+gem 'uglifier'
+gem 'jquery-rails'
+gem 'bootstrap'

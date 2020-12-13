@@ -1,5 +1,6 @@
 class ParticipantsController < ApplicationController
-  def category   
+  def category
+    @purpose_id = params[:purpose_id]
   end
 
   # def index
@@ -8,8 +9,10 @@ class ParticipantsController < ApplicationController
   # def show
   # end
 
-  # def new
-  # end
+  def new
+    @comment = Comment.new
+    @purpose_id = params[:purpose_id]
+  end
 
   # def create
   # end

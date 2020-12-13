@@ -17,11 +17,27 @@
         <p>image</p>
         <%= image_tag @purpose.image.url %>
       </div>
-      <%= form_for @purpose do |form| %>
-        <%= form.hidden_field :classification %>
-        <%= form.hidden_field :title %> 
-        <%= form.hidden_field :description %>  
-        <%= form.hidden_field :image %>
+
+      <% @purpose.tasks.each do |task| %>
+        <div><%= task.list %></div>
+      <% end %>
+
+      <% @purpose.tasks.each do |task| %>
+        <div><%= task.percent %>%</div>
+      <% end %>
+      
+      <%= form_for @purpose, multipart: :true do |form| %>
+        <%= form.hidden_field :classification, :value => @purpose.classification  %>
+        <%= form.hidden_field :title, :value => @purpose.title %> 
+        <%= form.hidden_field :description, :value => @purpose.description %>  
+        <%= form.hidden_field :image_cache, :value => @purpose.image_cache %>
+        <%= form.hidden_field :user_id, :value => @purpose.user_id %>
+
+      <%= form.fields_for :tasks do |t| %>
+        <%= t.hidden_field :list, :value => t.list %><br>
+        <%= t.hidden_field :percent, :value => t.percent　%>
+      <% end %>        
+
         <%= form.submit "登録", class: 'btn btn-secondary' %>
         <%= form.submit "戻る", name: :back, class: 'btn btn-secondary' %>
       <% end %>  
