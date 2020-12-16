@@ -3,5 +3,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user = current_user
     @purposes = @user.purposes
+
+    @participant_purposes = @user.participant_purposes
+    
   end
 end

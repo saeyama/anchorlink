@@ -73,3 +73,5 @@ gem 'carrierwave'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap'
+gem "chartkick"
+gem 'whenever', require: false

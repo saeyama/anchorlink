@@ -6,3 +6,10 @@
 <% @purposes.each do |purpose| %>
   <p><%= link_to purpose.title, purpose_path(purpose.id)  %></p>
 <% end %>
+
+
+<p>参加している目的</p>
+
+<% @participant_purposes.each do |purpose| %>
+  <p><%= link_to purpose.title, purpose_path(purpose.id)  %></p>
+<% end %>

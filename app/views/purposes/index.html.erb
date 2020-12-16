@@ -1,8 +1,35 @@
 
 <h2>目的一覧</h2>
 
-<% @purposes.each do |purpose| %>
-  <div><%= purpose.classification %>タイトル<%= purpose.title %>:<%= link_to "詳細", purpose_path(purpose.id) %></div>
-  
+<h3 id="book">本</h3>
+<% @books.each do |book| %>
+  <div>
+  <%= book.title %>
+  <%= link_to "詳細", purpose_path(book.id), class: 'btn btn-outline-secondary' %>
+  </div>  
+<% end %>
+
+<h3 id="qualification">試験</h3>
+<% @qualifications.each do |qualification| %>
+  <div>
+  <%= qualification.title %>
+  <%= link_to "詳細", purpose_path(qualification.id), class: 'btn btn-outline-secondary' %>
+  </div>  
+<% end %>
+
+<h3 id="health">健康</h3>
+<% @healths.each do |health| %>
+  <div>
+  <%= health.title %>
+  <%= link_to "詳細", purpose_path(health.id), class: 'btn btn-outline-secondary' %>
+  </div>  
+<% end %>
+
+<h3 id="money">お金</h3>
+<% @moneys.each do |money| %>
+  <div>
+  <%= money.title %>
+  <%= link_to "詳細", purpose_path(money.id), class: 'btn btn-outline-secondary' %>
+  </div>  
 <% end %>
 

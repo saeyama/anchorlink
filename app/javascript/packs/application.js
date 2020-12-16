@@ -11,6 +11,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("bootstrap/dist/js/bootstrap")
 require('jquery')
+require("chartkick") 
+require("chart.js") 
 require("test.js") 
 
 

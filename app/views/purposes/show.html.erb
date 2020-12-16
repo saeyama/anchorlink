@@ -1,16 +1,22 @@
 <h2>目的</h2>
+<p><%= @purpose.classification %></p>
+<p><%= @purpose.title %></p>
+<p><%= @purpose.description %></p>
+<p><%= image_tag @purpose.image_url if @purpose.image? %></p>
 
-<%= @purpose.classification %> 
-<%= @purpose.title %>
-<%= @purpose.description %> 
-<%= image_tag @purpose.image_url if @purpose.image? %>
-
-<% @purpose.tasks.each do |task| %>
-  <div><%= task.list %></div>
+<% @tasks.each do |task| %>
+  <span><%= task.list %></span>
+  <span><%= task.percent %>%</span>
 <% end %>
 
-<% @purpose.tasks.each do |task| %>
-  <div><%= task.percent %>%</div>
-<% end %>
+　<% if user_signed_in? %>
+    <% if @purpose.participanted_by?(current_user) %>
+      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %><br>
+    <% else %>
+      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
+      <%= link_to "この目的に参加する", new_purpose_participant_path(@purpose.id), class: 'btn btn-secondary' %><br>  
+    <% end %>
+  <% end %> 
 
-<%= link_to 'この目的に参加する',"#", class: 'btn btn-secondary' %>
+
+

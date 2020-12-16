@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 
+  get 'participants/category'
+
   resources :purposes do
+    resources :participants, only: [:new, :create, :destroy] 
     # resources :participants, only: [:new, :create, :destroy] do
     #   collection do
     #     get :category
@@ -27,14 +30,13 @@ Rails.application.routes.draw do
     end
   end
 
-
   # resources :participants  
 
-  resources :participants do
-    collection do
-      get :category
-    end
-  end
+  # resources :participants do
+  #   collection do
+  #     get :category
+  #   end
+  # end
 
   resources :tasks
   resources :scores  
