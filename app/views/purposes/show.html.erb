@@ -6,9 +6,6 @@
 
 <% @purpose.tasks.each do |task| %>
   <span><%= task.list %></span>
-<% end %>
-
-<% @purpose.each do |task| %>
   <span><%= task.percent %>%</span>
 <% end %>
 

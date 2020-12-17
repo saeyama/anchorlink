@@ -37,11 +37,10 @@
         <%= form.hidden_field :image_cache, :value => @purpose.image_cache %>
       
       <%= form.fields_for :tasks do |t| %>
-        <% @purpose.tasks.each do |task| %>
-          <%= t.hidden_field :list, :value => task.list %><br>
-          <%= t.hidden_field :percent, :value => task.percent %>
-        <% end %>
-      <% end %>      
+          <%= t.hidden_field :list, :value => @purpose.tasks[t.index].list %><br>
+          <%= t.hidden_field :percent, :value => @purpose.tasks[t.index].percent %>
+      <% end %>        
+
         <%= form.submit "登録", class: 'btn btn-secondary' %>
         <%= form.submit "戻る", name: :back, class: 'btn btn-secondary' %>
       <% end %>  

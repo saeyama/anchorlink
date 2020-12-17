@@ -18,8 +18,7 @@ class PurposesController < ApplicationController
 
     @purpose = current_user.purposes.build(purpose_params)
     @tasks = @purpose.tasks
-
-    # @purpose.image = File.new(params[:purpose][:image])
+    
     return if @purpose.valid?  #validateチェック
     flash.now[:alert] = "入力内容にエラーがあります。"
     render :new
