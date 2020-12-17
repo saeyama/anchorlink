@@ -97,11 +97,8 @@ https://xd.adobe.com/view/4c58aacc-44c8-407c-b85b-e261ea3c23d1-190b/
 https://app.diagrams.net/#G1--LzNXVqh-Cjgn9Eis-ANrqywvmR6PRD
 
 
-[修正前]
-https://gyazo.com/d7d673ba26aa0b1a5487b716049c8cad
-
 [修正後]
-![ER](https://user-images.githubusercontent.com/64824195/101278082-4d1d8a80-37fc-11eb-81a8-cd9630757660.png)
+![ER](https://user-images.githubusercontent.com/64824195/102504336-07967280-40c4-11eb-83c3-0b26ba48fc2b.png)
 
 
 
