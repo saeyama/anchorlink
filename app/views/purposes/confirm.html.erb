@@ -21,6 +21,11 @@
       <div>
       <% @purpose.tasks.each do |task| %>
         <span><%= task.list %></span>
+      <% end %>
+      </div>
+
+      <div>
+      <% @purpose.tasks.each do |task| %>
         <span><%= task.percent %>%</span>
       <% end %>
       </div>

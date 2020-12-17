@@ -12,17 +12,16 @@ class ParticipantsController < ApplicationController
   end
 
   def new
-    @purpose = Purpose.find_by(params[:purpose_id])
+    @purpose = Purpose.find(params[:purpose_id])
     @participant = Participant.new
-    
   end
 
   def create
+    @purpose = Purpose.find(params[:purpose_id])
     @participant = Participant.create(participant_params)
-    @purpose = Purpose.find_by(params[:purpose_id])
 
     if @participant.save
-      
+      AlarmMailer.alarm_mail(@participant).deliver_now
       redirect_to @purpose, success: '目的に参加しました。' 
     else
       flash.now[:danger] = '目的に参加できませんでした。'
@@ -40,6 +39,6 @@ class ParticipantsController < ApplicationController
 
   private
   def participant_params
-    params.require(:participant).permit(:goal, :notice, :alarm).merge(purpose_id: params[:purpose_id], user_id: current_user.id)
+    params.require(:participant).permit(:goal, :notice, :alarm).merge(purpose_id: params[:purpose_id], user_id: current_user.id).merge(email: params[:email], user_id: current_user.id)
   end
 end

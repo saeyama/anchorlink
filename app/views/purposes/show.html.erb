@@ -6,6 +6,9 @@
 
 <% @tasks.each do |task| %>
   <span><%= task.list %></span>
+<% end %>
+
+<% @tasks.each do |task| %>
   <span><%= task.percent %>%</span>
 <% end %>
 
