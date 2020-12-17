@@ -6,7 +6,16 @@
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
-#
+
+# 絶対パスから相対パス指定
+env :PATH, ENV['PATH']
+
+# 出力先のログファイルの指定
+set :output, 'log/cron.log'
+# ジョブの実行環境の指定
+set :environment, :development
+
+
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
@@ -16,5 +25,9 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
+
+every 1.minutes do
+  runner 'MyModel.task_to_run_at_four_thirty_in_the_morning'
+end
 
 # Learn more: http://github.com/javan/whenever
