@@ -35,7 +35,6 @@ class PurposesController < ApplicationController
 
   def show
     @purpose = Purpose.find_by(id: params[:id])
-    @tasks = @purpose.tasks
     # binding.pry
   end
 

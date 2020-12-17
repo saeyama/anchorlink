@@ -4,11 +4,11 @@
 <p><%= @purpose.description %></p>
 <p><%= image_tag @purpose.image_url if @purpose.image? %></p>
 
-<% @tasks.each do |task| %>
+<% @purpose.tasks.each do |task| %>
   <span><%= task.list %></span>
 <% end %>
 
-<% @tasks.each do |task| %>
+<% @purpose.each do |task| %>
   <span><%= task.percent %>%</span>
 <% end %>
 
