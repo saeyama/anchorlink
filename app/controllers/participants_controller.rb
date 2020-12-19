@@ -5,11 +5,11 @@ class ParticipantsController < ApplicationController
   def category
   end
 
-  def index
-  end
+  # def index
+  # end
 
-  def show
-  end
+  # def show
+  # end
 
   def new
     @purpose = Purpose.find(params[:purpose_id])

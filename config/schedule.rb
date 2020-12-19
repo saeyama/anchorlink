@@ -11,7 +11,7 @@
 env :PATH, ENV['PATH']
 
 # 出力先のログファイルの指定
-set :output, 'log/cron.log'
+set :output, 'log/crontab.log'
 # ジョブの実行環境の指定
 set :environment, :development
 
@@ -26,8 +26,14 @@ set :environment, :development
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every 1.minutes do
-  runner 'MyModel.task_to_run_at_four_thirty_in_the_morning'
+every 1.days, at: '9:00 am' do
+# every 1.minutes do
+  runner 'AlarmMailer.alarm_mail_at9'
 end
+
+every 1.days, at: '10:00 am' do
+  # every 1.minutes do
+    runner 'AlarmMailer.alarm_mail_at10'
+  end
 
 # Learn more: http://github.com/javan/whenever

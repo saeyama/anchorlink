@@ -4,9 +4,26 @@ class AlarmMailer < ApplicationMailer
   def alarm_mail(user)
     @user = user
     mail(
-      from: 'from@example.com',
       to:   @user.email,
-      subject: 'お問い合わせ通知'
+      subject: 'anchorlink通知'
+    )
+  end
+
+  def alarm_mail_at9
+    @user = User.pluck(:email)
+    Participant.where(alarm: '9:00')
+    mail(
+      to:   @user,
+      subject: 'anchorlink通知'
+    )
+  end
+
+  def alarm_mail_at10
+    @user = User.pluck(:email)
+    Participant.where(alarm: '10:00')
+    mail(
+      to:   @user,
+      subject: 'anchorlink通知'
     )
   end
 
