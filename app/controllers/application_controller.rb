@@ -17,8 +17,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
   end
 
-  def logged_in?
-    !current_user.nil?
-  end
-
 end
