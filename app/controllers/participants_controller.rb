@@ -21,7 +21,6 @@ class ParticipantsController < ApplicationController
     @participant = Participant.create(participant_params)
 
     if @participant.save
-      # AlarmMailer.alarm_mail(current_user).deliver
       redirect_to @purpose, success: '目的に参加しました。' 
     else
       flash.now[:danger] = '目的に参加できませんでした。'

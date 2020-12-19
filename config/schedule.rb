@@ -3,9 +3,8 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
+
 # Example:
-#
-# set :output, "/path/to/my/cron_log.log"
 
 # 絶対パスから相対パス指定
 env :PATH, ENV['PATH']
@@ -28,12 +27,8 @@ set :environment, :development
 
 every 1.days, at: '9:00 am' do
 # every 1.minutes do
-  runner 'AlarmMailer.alarm_mail(current_user).deliver'
+  runner 'AlarmMailer.alarm_mail.deliver_now'
 end
 
-every 1.days, at: '10:00 am' do
-  # every 1.minutes do
-    runner 'AlarmMailer.alarm_mail_at10'
-  end
 
 # Learn more: http://github.com/javan/whenever
