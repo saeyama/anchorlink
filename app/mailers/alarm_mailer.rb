@@ -1,12 +1,11 @@
 class AlarmMailer < ApplicationMailer
   default from: 'noreply@example.com'
 
-  def alarm_mail(user)
-    @user = user
-    mail(
-      to:   @user.email,
-      subject: 'anchorlink通知'
-    )
+  def alarm_mail
+    binding.pry 
+  
+    default to: -> { User.pluck(:email) }
+    mail(subject: "anchorlink通知")
   end
 
   def alarm_mail_at9

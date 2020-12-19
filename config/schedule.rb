@@ -28,7 +28,7 @@ set :environment, :development
 
 every 1.days, at: '9:00 am' do
 # every 1.minutes do
-  runner 'AlarmMailer.alarm_mail_at9'
+  runner 'AlarmMailer.alarm_mail'
 end
 
 every 1.days, at: '10:00 am' do
