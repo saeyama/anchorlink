@@ -98,8 +98,4 @@ https://app.diagrams.net/#G1--LzNXVqh-Cjgn9Eis-ANrqywvmR6PRD
 
 
 [修正後]
-![ER](https://user-images.githubusercontent.com/64824195/102504336-07967280-40c4-11eb-83c3-0b26ba48fc2b.png)
-
-
-
-
+![ER](https://user-images.githubusercontent.com/64824195/102704752-a8528100-42c2-11eb-9435-2c472517e6e5.png)
