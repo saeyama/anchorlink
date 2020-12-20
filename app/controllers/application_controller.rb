@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+  helper_method :current_user
+
   def after_sign_in_path_for(resource)
     user_path(resource.id) 
   end
@@ -12,9 +14,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
-      devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
+  end
 
 end

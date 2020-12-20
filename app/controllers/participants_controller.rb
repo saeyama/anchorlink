@@ -5,11 +5,11 @@ class ParticipantsController < ApplicationController
   def category
   end
 
-  def index
-  end
+  # def index
+  # end
 
-  def show
-  end
+  # def show
+  # end
 
   def new
     @purpose = Purpose.find(params[:purpose_id])
@@ -21,7 +21,6 @@ class ParticipantsController < ApplicationController
     @participant = Participant.create(participant_params)
 
     if @participant.save
-      AlarmMailer.alarm_mail(current_user).deliver
       redirect_to @purpose, success: '目的に参加しました。' 
     else
       flash.now[:danger] = '目的に参加できませんでした。'
