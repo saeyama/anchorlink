@@ -1,22 +1,51 @@
 <h2>目的</h2>
-<p><%= @purpose.classification %></p>
+<p>カテゴリ:<%= @purpose.classification %></p>
 <p><%= @purpose.title %></p>
 <p><%= @purpose.description %></p>
 <p><%= image_tag @purpose.image_url if @purpose.image? %></p>
 
-<% @purpose.tasks.each do |task| %>
-  <span><%= task.list %></span>
-  <span><%= task.percent %>%</span>
-<% end %>
 
-　<% if user_signed_in? %>
-    <% if @purpose.participanted_by?(current_user) %>
-      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %><br>
-    <% else %>
-      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
-      <%= link_to "この目的に参加する", new_purpose_participant_path(@purpose.id), class: 'btn btn-secondary' %><br>  
+<% if user_signed_in? %>
+　<div>
+  <% if @purpose.participanted_by?(current_user) %>
+
+  <h3>タスクの設定</h3>
+    <% @purpose.tasks.each do |task| %>
+      <div class="mt-2">
+        <%= task.list %>：
+        <%= task.percent %>%
+
+        <%= select :status,:name,ParticipantTask.statuses_i18n.invert.keys.to_a %>
+        <%= link_to "更新", '#', class: 'btn btn-secondary' %>
+        
+
+        <% form_for(@participant_task, :url=>{:controller=>"participant_tasks", :action=>"create"}, data:{remote:true}) do |form| %>
+          <%= form.select :status, ParticipantTask.statuses.keys.map {|k| [I18n.t("enums.participant_task.status.#{k}"), k]} %>
+          <%= form.submit "更新", class: 'btn btn-secondary' %>  
+        <% end %>     
+
+      </div>
     <% end %>
-  <% end %> 
 
+  <div class="mt-5">
+    <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
+    <%= link_to "評価する", '#', class: 'btn btn-secondary' %>
+  </div>
+    
+  <% else %>
 
+  <h3>タスクの設定</h3>
+    <% @purpose.tasks.each do |task| %>
+      <div class="mt-2">
+        <%= task.list %>：
+        <%= task.percent %>%
+      </div>
+    <% end %>  
 
+  <div class="mt-2">
+    <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
+    <%= link_to "この目的に参加する", new_purpose_participant_path(@purpose.id), class: 'btn btn-secondary' %>
+  </div>  
+  <% end %>
+  </div>
+<% end %> 

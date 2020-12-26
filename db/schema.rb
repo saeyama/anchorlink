@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_12_15_043913) do
 
+  create_table "participant_tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "participant_id"
+    t.integer "task_id"
+    t.integer "status", limit: 1, default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "participants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "user_id"
     t.integer "purpose_id"

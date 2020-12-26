@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   # resources :participants  
-
+  resources :participant_tasks, only: [:create, :update] 
   # resources :participants do
   #   collection do
   #     get :category
