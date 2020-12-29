@@ -9,21 +9,11 @@
 　<div>
   <% if @purpose.participanted_by?(current_user) %>
 
-  <h3>タスクの設定</h3>
+  <h3>タスクの詳細</h3>
     <% @purpose.tasks.each do |task| %>
       <div class="mt-2">
         <%= task.list %>：
         <%= task.percent %>%
-
-        <%= select :status,:name,ParticipantTask.statuses_i18n.invert.keys.to_a %>
-        <%= link_to "更新", '#', class: 'btn btn-secondary' %>
-        
-
-        <% form_for(@participant_task, :url=>{:controller=>"participant_tasks", :action=>"create"}, data:{remote:true}) do |form| %>
-          <%= form.select :status, ParticipantTask.statuses.keys.map {|k| [I18n.t("enums.participant_task.status.#{k}"), k]} %>
-          <%= form.submit "更新", class: 'btn btn-secondary' %>  
-        <% end %>     
-
       </div>
     <% end %>
 

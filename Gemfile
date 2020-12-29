@@ -75,3 +75,4 @@ gem 'jquery-rails'
 gem 'bootstrap'
 gem "chartkick"
 gem 'whenever', require: false
+gem 'enum_help'

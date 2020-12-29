@@ -1,19 +1,14 @@
 class ParticipantTasksController < ApplicationController
 
-  def create
-    @participant_task = ParticipantTask.new(participant_task_params)
-    @participant_task.participant_id = @participant
-    @participant_task.task_id = @purpose.tasks
-    
 
-    respond_to do |format|
-      if @participant_task.save
-          format.html { redirect_to @purpose,notice: 'タスクを登録しました' }
-          format.js { render :action => "index" }        
-      else
-        flash.now[:alert] = "投稿に失敗しました"
-        render :@purpose
-      end
+  def update
+    @participant_task = ParticipantTask.find_by(params[:id])
+    
+    if @participant_task.update(participant_task_params)
+      redirect_to purpose_tasks_path, success: 'タスクを更新しました。' 
+    else
+      flash.now[:danger] = 'タスクを更新できませんでした。'
+      render purpose_tasks_path
     end
   end     
 
@@ -21,6 +16,5 @@ class ParticipantTasksController < ApplicationController
   def participant_task_params
     params.require(:participant_task).permit(:status)
   end
-
 
 end

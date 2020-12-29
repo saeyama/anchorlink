@@ -5,12 +5,6 @@ class ParticipantsController < ApplicationController
   def category
   end
 
-  # def index
-  # end
-
-  # def show
-  # end
-
   def new
     @purpose = Purpose.find(params[:purpose_id])
     @participant = Participant.new
@@ -21,20 +15,16 @@ class ParticipantsController < ApplicationController
     @participant = Participant.create(participant_params)
 
     if @participant.save
+
+      @purpose.tasks.each do |task| 
+        ParticipantTask.create({task_id: task.id, participant_id: @participant.id, status: 0})
+      end
+
       redirect_to @purpose, success: '目的に参加しました。' 
     else
       flash.now[:danger] = '目的に参加できませんでした。'
     end 
   end
-
-  # def edit
-  # end
-
-  # def update
-  # end
-
-  # def destroy
-  # end
 
   private
   def participant_params

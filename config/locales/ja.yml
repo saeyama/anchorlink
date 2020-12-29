@@ -1,0 +1,6 @@
+ja:
+  enums:
+    participant_task:
+      status:
+        incomplete: 未完了
+        done: 完了

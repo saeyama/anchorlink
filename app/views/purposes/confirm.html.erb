@@ -1,5 +1,5 @@
-<div class="top-hero-wrapper text-center">
-  <div class="container top-hero-container">
+<div class="">
+  <div class="">
     <h2 class="">以下の内容で登録してよろしいですか？</h2>
       <div class="form-group">
         <p>カテゴリ</p>
@@ -18,18 +18,13 @@
         <%= image_tag @purpose.image.url %>
       </div>
       
-      <div>
       <% @purpose.tasks.each do |task| %>
-        <span><%= task.list %></span>
+        <div>
+          <%= task.list %>：
+          <%= task.percent %>%
+      　</div>
       <% end %>
-      </div>
-
-      <div>
-      <% @purpose.tasks.each do |task| %>
-        <span><%= task.percent %>%</span>
-      <% end %>
-      </div>
-       
+      
       <%= form_for @purpose, multipart: :true do |form| %>
         <%= form.hidden_field :classification, :value => @purpose.classification  %>
         <%= form.hidden_field :title, :value => @purpose.title %> 
@@ -46,4 +41,3 @@
       <% end %>  
   </div>
 </div>
-

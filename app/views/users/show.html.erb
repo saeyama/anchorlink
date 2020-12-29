@@ -1,15 +1,23 @@
 <h2>マイページ</h2>
-<p>USER:<%= @user.name %></p>
+<p>USER:<%= @user.name %>さん</p>
 
 <p>作成した目的</p>
 
 <% @purposes.each do |purpose| %>
-  <p><%= link_to purpose.title, purpose_path(purpose.id)  %></p>
+  <p>
+    <%= purpose.title %>    
+    <%= link_to "詳細", purpose_path(purpose.id), class: 'btn btn-outline-secondary' %>  
+  </p>
 <% end %>
 
 
 <p>参加している目的</p>
 
 <% @participant_purposes.each do |purpose| %>
-  <p><%= link_to purpose.title, purpose_path(purpose.id)  %></p>
+  <p>
+    <%= purpose.title %>
+    <%= link_to "詳細", purpose_path(purpose.id),class: 'btn btn-outline-secondary' %>
+    <%= link_to "進捗", purpose_tasks_path(purpose.id), class: 'btn btn-outline-secondary' %> 
+    <%= link_to "変更", '', class: 'btn btn-outline-secondary' %> 
+  </p>
 <% end %>

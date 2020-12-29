@@ -1,5 +1,5 @@
-<div class="top-hero-wrapper text-center">
-  <div class="container top-hero-container">
+<div>
+  <div>
     <h2 class="">目的を作成する</h2>
       <%= form_for @purpose, url: confirm_purposes_path(@purpose) do |form| %>
         <div class="form-group">
@@ -24,10 +24,10 @@
           <%= form.fields_for :tasks do |t| %>
           <div class="js-tasks" id="add_tasks_<%= t.index %>"></div>
             <%= t.hidden_field :user_id, value: current_user.id %>
-            <%= t.text_field :list, placeholder:"タスク内容を入力してください。" %><br>
+            <%= t.text_field :list, placeholder:"タスク内容を入力してください。" %>
             <%= t.select :percent, [[5, 5], [10, 10], [15, 15], [20, 20],[25, 25], [30, 30], [35, 35], [40, 40], [45, 45], [50, 50], [55, 55], [60, 60], [65, 65], [70, 70], [75, 75], [80, 80], [85, 85], [90, 90], [95, 95], [100, 100]], include_blank: "進捗率", class:"form-control" %>
             <span>%</span><br>
-            <p id= "add_task_button" class="btn btn-secondary">タスク追加</p>
+            <p id= "add_task_button" class="btn btn-secondary mt-2">タスク追加</p>
           <% end %>
         </div>
       <%= form.submit "確認画面へ", class: 'btn btn-secondary' %>
@@ -41,10 +41,9 @@ $(function() {
   $('#add_task_button').on('click', function() {
     var input =
         '<div class="js-tasks" id="add_tasks_' + task_num + '">'
-        +'<p>タスク</p>'
-        + '<input class="form-control" placeholder="タスク内容を入力してください。" type="text" name="purpose[tasks_attributes][' + task_num + '][list]" id="purpose_tasks_attributes_' + task_num + '_list" required>'
 
-        +'<p>進捗率</p>'
+        +'<input class="form-control" placeholder="タスク内容を入力してください。" type="text" name="purpose[tasks_attributes][' + task_num + '][list]" id="purpose_tasks_attributes_' + task_num + '_list" required>'
+
         +'<select class="form-control" placeholder="タスク内容を入力してください。"  name="purpose[tasks_attributes][' + task_num + '][percent]" id="purpose_tasks_attributes_' + task_num + '_percent" required >'
         +'<option value="">進捗率</option>'
         +'<option value="5">5</option>'

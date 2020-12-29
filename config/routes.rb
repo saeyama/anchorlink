@@ -20,24 +20,14 @@ Rails.application.routes.draw do
 
   resources :purposes do
     resources :participants, only: [:new, :create, :destroy] 
-    # resources :participants, only: [:new, :create, :destroy] do
-    #   collection do
-    #     get :category
-    #   end
-    # end
+    resources :tasks, only: [:index] 
+    resources :participant_tasks, only: [:update]
     collection do
       post :confirm
     end
   end
 
-  # resources :participants  
-  resources :participant_tasks, only: [:create, :update] 
-  # resources :participants do
-  #   collection do
-  #     get :category
-  #   end
-  # end
+  # resources :participant_tasks, only: [:new, :show, :create, :update] 
 
-  resources :tasks
   resources :scores  
 end
