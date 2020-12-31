@@ -1,5 +1,10 @@
 class ParticipantTasksController < ApplicationController
 
+  def show
+    
+  end
+  
+
 
   def update
     @participant_task = ParticipantTask.find_by(params[:id])
