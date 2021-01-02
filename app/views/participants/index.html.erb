@@ -1,0 +1,35 @@
+<h2>進捗管理</h2>
+
+<p>カテゴリ:<%= @purpose.classification %></p>
+<p><%= @purpose.title %></p>
+<p><%= @purpose.description %></p>
+<p><%= image_tag @purpose.image_url %></p>
+
+
+<% @purpose.tasks.each do |task| %>
+  <div class="mt-2">
+    <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
+          <%= task.list %>：
+          <%= task.percent %>%
+ 
+          <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
+          <%= form.select :status, ParticipantTask.statuses.keys.map {|k| [I18n.t("enums.participant_task.status.#{k}"), k]} %>
+          <%= form.submit "更新", class: 'btn btn-secondary' %>  
+          <% end %>
+    <% end %>
+
+  </div>  
+<% end %>
+
+<% @participant_tasks.each do |task| %>
+  <div class="mt-2">
+          <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
+          <%= task.list %>：
+          <%= task.percent %>%
+          <%= form.select :status, ParticipantTask.statuses.keys.map {|k| [I18n.t("enums.participant_task.status.#{k}"), k]} %>
+          <%= form.submit "更新", class: 'btn btn-secondary' %>  
+    <% end %>
+  </div>  
+<% end %>
+
+

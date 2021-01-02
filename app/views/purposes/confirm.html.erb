@@ -25,7 +25,7 @@
       　</div>
       <% end %>
       
-      <%= form_for @purpose, multipart: :true do |form| %>
+      <%= form_for @purpose do |form| %>
         <%= form.hidden_field :classification, :value => @purpose.classification  %>
         <%= form.hidden_field :title, :value => @purpose.title %> 
         <%= form.hidden_field :description, :value => @purpose.description %>  

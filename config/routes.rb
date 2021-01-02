@@ -19,16 +19,13 @@ Rails.application.routes.draw do
   get 'participants/category'
 
   resources :purposes do
-    resources :participants, only: [:new, :create, :destroy, :index] do
-      resources :participant_tasks, only: [:update,:show]    
+    resources :participants, only: [:new, :create, :destroy, :show, :index] do
+      resources :participant_tasks, only: [:update, :show, :index]    
     end
     resources :tasks, only: [:index] 
     collection do
       post :confirm
     end
   end
-
-  # resources :participant_tasks, only: [:new, :show, :create, :update] 
-
   resources :scores  
 end

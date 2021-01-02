@@ -3,12 +3,12 @@
 <p>カテゴリ:<%= @purpose.classification %></p>
 <p><%= @purpose.title %></p>
 <p><%= @purpose.description %></p>
-<p><%= image_tag @purpose.image_url if @purpose.image? %></p>
+<p><%= image_tag @purpose.image_url %></p>
 
 
 <% @purpose.tasks.each do |task| %>
   <div class="mt-2">
-   
+
     <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
           <%= task.list %>：
           <%= task.percent %>%
@@ -18,6 +18,3 @@
 
   </div>  
 <% end %>
-
-    
-

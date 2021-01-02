@@ -17,7 +17,12 @@
   <p>
     <%= purpose.title %>
     <%= link_to "詳細", purpose_path(purpose.id),class: 'btn btn-outline-secondary' %>
-    <%= link_to "進捗", purpose_participant_participant_task_path(purpose.id,Participant.first.id), class: 'btn btn-outline-secondary' %> 
+
+<% @participants.each do |participant| %>
+    <%= link_to "進捗", purpose_participant_participant_tasks_path(purpose.id,participant.id),class: 'btn btn-outline-secondary' %>
     <%= link_to "変更", '', class: 'btn btn-outline-secondary' %> 
+<% end %>    
   </p>
 <% end %>
+
+
