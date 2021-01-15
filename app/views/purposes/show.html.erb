@@ -4,6 +4,7 @@
 <p><%= @purpose.description %></p>
 <p><%= image_tag @purpose.image_url if @purpose.image? %></p>
 
+<p>参加人数：<%= @purpose.participant_users.count %>人</p>
 
 <% if user_signed_in? %>
 　<div>

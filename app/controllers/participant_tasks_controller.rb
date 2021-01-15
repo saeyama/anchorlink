@@ -1,19 +1,18 @@
 class ParticipantTasksController < ApplicationController
 
-  def show
-    
+  def index
+    @purpose = Purpose.find_by(id: params[:purpose_id])
   end
   
 
-
   def update
-    @participant_task = ParticipantTask.find_by(params[:id])
-    
+    @participant_task = ParticipantTask.find(params[:id])
+
     if @participant_task.update(participant_task_params)
-      redirect_to purpose_tasks_path, success: 'タスクを更新しました。' 
+      redirect_to purpose_participant_participant_tasks_path, success: 'タスクを更新しました。' 
     else
       flash.now[:danger] = 'タスクを更新できませんでした。'
-      render purpose_tasks_path
+      render root_path
     end
   end     
 
