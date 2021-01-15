@@ -6,8 +6,7 @@ class UsersController < ApplicationController
 
     @participant_purposes = @user.participant_purposes
     
-    @participants = @user.participants
+    # @participants = @user.participants
     
-
   end
 end

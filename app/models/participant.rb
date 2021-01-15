@@ -4,6 +4,4 @@ class Participant < ApplicationRecord
 
   #追記
   has_many :participant_tasks
-  has_many :progress_tasks, through: :participant_tasks, source: 'task'
-
 end

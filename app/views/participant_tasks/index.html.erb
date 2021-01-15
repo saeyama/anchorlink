@@ -1,23 +1,26 @@
 <h2>進捗管理</h2>
-
 <p>カテゴリ:<%= @purpose.classification %></p>
 <p><%= @purpose.title %></p>
 <p><%= @purpose.description %></p>
 <p><%= image_tag @purpose.image_url %></p>
 
-
 <% @purpose.tasks.each do |task| %>
   <div class="mt-2">
-    <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
-          <%= task.list %>：
-          <%= task.percent %>%
- 
-          <%= form_for(@participant_task, url:{ controller: "participant_tasks", action: "update", id: @participant_task.id}) do |form| %>
-          <%= form.select :status, ParticipantTask.statuses.keys.map {|k| [I18n.t("enums.participant_task.status.#{k}"), k]} %>
-          <%= form.submit "更新", class: 'btn btn-secondary' %>  
-          <% end %>
-    <% end %>
 
+  <%= form_for([@purpose, current_user.participants.find_by(purpose_id: @purpose.id), current_user.participants.find_by(purpose_id: @purpose.id).participant_tasks.find_by(task_id: task.id)]) do |form| %>
+          <%= task.list %>：
+          <%= task.percent %>% 
+          <%= form.select :status, ParticipantTask.statuses_i18n.map{|key, value| [ParticipantTask.statuses_i18n[key], key]} %>
+          <%= form.submit "更新", class: 'btn btn-secondary' %>  
+    <% end %>
+  </div>  
+<% end %>
+
+<% @purpose.tasks.each do |task| %>
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight" style = "padding:10px;"><%= task.percent %>%完了：</div>
+    <div class="p-2 bd-highlight"><%= bar_chart ParticipantTask.where(task_id: task.id, status: "done").group(:task_id).count, min: 0, max: 5, height: '60px' %></div>
+    <div class="p-2 bd-highlight"><%= ParticipantTask.where(task_id: task.id, status: "done").count %>人</div>
   </div>  
 <% end %>
 

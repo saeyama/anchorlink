@@ -16,6 +16,7 @@ class Purpose < ApplicationRecord
   has_many :participants
   has_many :participant_users, through: :participants, source: 'user'
 
+
   def participanted_by?(user)
     participants.where(user_id: user.id).exists?
   end
