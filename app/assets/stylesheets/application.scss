@@ -1,5 +1,6 @@
  @import "bootstrap/scss/bootstrap";
  @import "@fortawesome/fontawesome-free/scss/fontawesome";
+ @import "users";
  @import "pages";
  @import "purposes";
  @import "scores";
@@ -25,3 +26,4 @@
 .alert-alert {
   @extend .alert-danger;
 }
+
