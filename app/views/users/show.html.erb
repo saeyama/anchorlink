@@ -7,7 +7,7 @@
     <%= link_to "詳細", purpose_path(purpose.id), class: 'btn btn-outline-secondary' %>  
   </p>
 <% end %>
-<p class="test_1" >参加している目的</p>
+<p>参加している目的</p>
 <% @participant_purposes.each do |purpose| %>
   <p>
     <%= purpose.title %>
