@@ -1,0 +1,23 @@
+<h2>評価する</h2>
+
+<p>カテゴリ:<%= @purpose.classification %></p>
+<p><%= @purpose.title %></p>
+<p><%= @purpose.description %></p>
+<p><%= image_tag @purpose.image_url if @purpose.image? %></p>
+
+<% @scores.each do |score| %>
+    <p><%= score.comment %></p>
+    <div class="mb-3">評価：<%= score.rate %>点 </div>
+    <div id="star-rate-<%= score.id %>"></div>
+    <script>
+          $('#star-rate-<%= score.id %>').raty({
+            // size: 36,
+            readOnly: true,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            score: <%= score.rate %>,
+        });
+    </script> 
+<% end %>

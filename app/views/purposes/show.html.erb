@@ -6,6 +6,9 @@
 
 <p>参加人数：<%= @purpose.participant_users.count %>人</p>
 
+<div class="average-score-rate" data-score=<%= @average_score %>></div>
+<div><%= link_to "レビュー詳細", purpose_scores_path(purpose_id: @purpose.id), class: 'btn btn-secondary' %></div>
+
 <% if user_signed_in? %>
 　<div>
   <% if @purpose.participanted_by?(current_user) %>
@@ -18,11 +21,17 @@
       </div>
     <% end %>
 
-  <div class="mt-5">
-    <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
-    <%= link_to "評価する", '#', class: 'btn btn-secondary' %>
-  </div>
-    
+  <% if @purpose.scored_by?(current_user) %>
+    <div class="mt-5">
+      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
+    </div>
+  <% else %>
+      <div class="mt-5">
+      <%= link_to "マイページ", user_path(id: current_user.id), class: 'btn btn-secondary' %>
+      <%= link_to "評価する", new_purpose_score_path(purpose_id:@purpose.id), class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+
   <% else %>
 
   <h3>タスクの設定</h3>
@@ -40,3 +49,16 @@
   <% end %>
   </div>
 <% end %> 
+
+<script>
+  $('.average-score-rate').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>

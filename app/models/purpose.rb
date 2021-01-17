@@ -20,5 +20,9 @@ class Purpose < ApplicationRecord
   def participanted_by?(user)
     participants.where(user_id: user.id).exists?
   end
+
+  def scored_by?(user)
+    scores.where(user_id: user.id).exists?
+  end
   
 end
