@@ -1,18 +1,25 @@
+<h2>評価する</h2>
 
+<p>カテゴリ:<%= @purpose.classification %></p>
+<p><%= @purpose.title %></p>
+<p><%= @purpose.description %></p>
+<p><%= image_tag @purpose.image_url if @purpose.image? %></p>
 
-<%= form_with model: @score, local: true , url: scores_path do |f| %>
-    <%= f.text_area :content %>
+<%= form_with model: [@purpose, @score], local: true , url: purpose_scores_path do |f| %>
+    <%= f.text_area :comment %><br>
+    <%= f.hidden_field :purpose_id, value: @purpose.id %>
     <div class="field" id="star">
-        <%= f.label :rate,  "星評価 (※必須)" ,id: "e"%>
+        <%= f.label :rate,  "星評価 (※必須)" ,id: "e" %>
         <%= f.hidden_field :rate, id: :review_star %>
     </div>
     <script>
         $('#star').raty({
-            size     : 36,
-            starOff:  '<%= image_tag 'star-off.png' %>',
-            starOn : '<%= image_tag 'star-on.png' %>',
-            starHalf: '<%= image_tag 'star-half.png' %>',
-            scoreName: 'comment[rate]',
+            // size: 36,
+            half: true,
+            starOff:  '<%= asset_path 'star-off.png' %>',
+            starOn : '<%= asset_path 'star-on.png' %>',
+            starHalf: '<%= asset_path 'star-half.png' %>',
+            scoreName: 'score[rate]'
         });
     </script>
     <%= f.submit %>

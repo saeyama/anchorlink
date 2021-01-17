@@ -20,14 +20,16 @@ Rails.application.routes.draw do
 
   #目的
   resources :purposes do
+    collection do
+      post :confirm
+    end
     #参加
     resources :participants, only: [:new, :create, :destroy] do
       #参加タスク
       resources :participant_tasks, only: [:update, :index]    
     end
-    collection do
-      post :confirm
-    end
+    #評価
+    resources :scores, only: [:new, :create, :destroy, :index] 
   end
-  resources :scores  
+
 end

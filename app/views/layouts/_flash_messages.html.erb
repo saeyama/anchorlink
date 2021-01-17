@@ -1,6 +1,11 @@
-<% flash.each do |msg_type, msg| %>
-  <div class="alert alert-<%= msg_type %>" role="alert" id="alert">
-    <a href="#" class="close" data-dismiss="alert">×</a>
-    <%= msg %>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>" role="alert" id="value">
+    <%= value %>
   </div>
 <% end %>
+
+<script>
+  $(function(){
+    $(".alert").fadeOut(5000);
+  });
+</script>

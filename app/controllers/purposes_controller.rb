@@ -29,11 +29,17 @@ class PurposesController < ApplicationController
   def create
     @purpose = current_user.purposes.build(purpose_params)
     render :new and return if params[:back] || !@purpose.save
-    redirect_to @purpose
+    redirect_to @purpose, success: "目的の登録が完了しました"
   end
 
   def show
     @purpose = Purpose.find_by(id: params[:id])
+
+    if @purpose.scores.blank?
+      @average_score = 0
+    else
+      @average_score = @purpose.scores.average(:rate).round(1)
+    end
   end
 
 private
